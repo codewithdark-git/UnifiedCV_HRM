@@ -1,0 +1,77 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+future_work.md
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.conda/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PyTest
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ML / Data
+data/
+checkpoints/
+logs/
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+wandb/
+*.wandb/
+
+# Model weights
+*.bin
+model*.pt
+best_model.*
+final_model.*
+
+# Configs (local overrides)
+configs/local/
+configs/*.local.yaml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Tensorboard
+runs/
+
+# HuggingFace cache
+~/.cache/huggingface/
