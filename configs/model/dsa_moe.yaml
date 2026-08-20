@@ -1,0 +1,241 @@
+# I-HRM Model Configurations
+
+# Paper Base (DSA + MoE, D=384, H=8, p=16)
+model_base:
+  hidden_size: 384
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "classification"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Table 2: Standard (MHA + SwiGLU, D=256)
+model_standard:
+  hidden_size: 256
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "mha"
+  dsa_window: 7
+  ffn_type: "swiglu"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "classification"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Table 2: DSA (DSA w=7 + SwiGLU, D=256)
+model_dsa:
+  hidden_size: 256
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "swiglu"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "classification"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Table 2: MoE (MHA + MoE(8), D=256)
+model_moe:
+  hidden_size: 256
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "mha"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "classification"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Table 2: DSA+MoE (DSA w=7 + MoE(8), D=256) - Best
+model_dsa_moe:
+  hidden_size: 256
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "classification"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Segmentation variant
+model_seg:
+  hidden_size: 384
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "segmentation"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Detection variant
+model_det:
+  hidden_size: 384
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "detection"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+# Multi-task variant
+model_multitask:
+  hidden_size: 384
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "multi_task"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
