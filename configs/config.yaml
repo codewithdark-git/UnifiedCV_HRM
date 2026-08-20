@@ -1,0 +1,104 @@
+# I-HRM Combined Configuration
+# Use: ihrm train --config configs/config.yaml
+
+model:
+  hidden_size: 384
+  num_heads: 8
+  num_layers_per_stream: 2
+  max_steps: 6
+  halt_threshold: 0.5
+  halt_loss_weight: 0.1
+  attention_type: "dsa"
+  dsa_window: 7
+  ffn_type: "moe"
+  ffn_expansion: 4.0
+  moe_num_experts: 8
+  moe_routing: "dense"
+  image_size: 224
+  patch_size: 16
+  in_channels: 3
+  use_cls_token: true
+  use_pos_embed: true
+  num_frames: 8
+  video_patch_size: [2, 4, 4]
+  task: "classification"
+  num_classes: 1000
+  seg_num_classes: 80
+  det_num_classes: 80
+  det_num_proposals: 100
+  init_std: 0.02
+  norm_eps: 1e-5
+  use_rmsnorm: true
+
+data:
+  name: "cifar100"
+  source: "torchvision"
+  tv_dataset_name: "CIFAR100"
+  num_classes: 100
+  image_size: 32
+  image_size_val: 32
+  mean: [0.5071, 0.4867, 0.4408]
+  std: [0.2675, 0.2565, 0.2761]
+  batch_size: 128
+  num_workers: 4
+  augment: true
+  aug_strength: "standard"
+  rand_augment: false
+  mixup_alpha: 0.0
+  cutmix_alpha: 0.0
+
+train:
+  epochs: 300
+  batch_size: 128
+  max_steps: null
+  gradient_accumulation_steps: 1
+  optimizer: "adamw"
+  lr: 0.0003
+  weight_decay: 0.05
+  beta1: 0.9
+  beta2: 0.999
+  eps: 1e-8
+  scheduler: "cosine_warmup"
+  warmup_epochs: 20
+  warmup_start_lr: 1e-6
+  min_lr: 1e-6
+  step_size: 30
+  gamma: 0.1
+  grad_clip: 1.0
+  label_smoothing: 0.1
+  mixup_alpha: 0.0
+  cutmix_alpha: 0.0
+  precision: "fp16"
+  bf16: false
+  distributed_backend: "none"
+  ddp_find_unused_parameters: false
+  fsdp_sharding_strategy: "FULL_SHARD"
+  log_interval: 50
+  log_level: "INFO"
+  use_wandb: true
+  wandb_project: "ihrm"
+  wandb_entity: null
+  wandb_tags: []
+  use_tensorboard: true
+  tensorboard_dir: "./logs/tensorboard"
+  eval_interval: 1
+  eval_batch_size: null
+  save_interval: 10
+  save_best_only: true
+  save_last: true
+  max_keep_ckpts: 5
+  checkpoint_dir: "./checkpoints"
+  resume_from: null
+  push_to_hub: false
+  hub_repo_id: null
+  hub_token: null
+  hub_private: false
+  hub_commit_every: 1
+  seed: 42
+  deterministic: false
+  benchmark: true
+  early_stopping: false
+  early_stopping_patience: 10
+  early_stopping_metric: "val_loss"
+  early_stopping_mode: "min"
+  halt_loss_weight: 0.1
