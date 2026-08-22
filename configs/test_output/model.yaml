@@ -1,0 +1,37 @@
+model:
+  architectures:
+  - UnifiedCVHRM
+  attention_type: dsa
+  causal: false
+  det_num_classes: 80
+  det_num_proposals: 100
+  dsa_window: 7
+  ffn_expansion: 4.0
+  ffn_type: moe
+  halt_loss_weight: 0.1
+  halt_threshold: 0.5
+  hidden_size: 256
+  image_size: 224
+  in_channels: 3
+  init_std: 0.02
+  max_steps: 6
+  model_type: unified_cv_hrm
+  moe_num_experts: 8
+  moe_routing: dense
+  moe_top_k: 2
+  norm_eps: 1.0e-05
+  num_classes: 1000
+  num_frames: 8
+  num_heads: 8
+  num_layers_per_stream: 2
+  patch_size: 16
+  seg_num_classes: 80
+  task: classification
+  use_cls_token: true
+  use_pos_embed: true
+  use_rmsnorm: true
+  use_rotary: false
+  video_patch_size: !!python/tuple
+  - 2
+  - 4
+  - 4
